@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package maalfrid.service.aggregator;
+
+option go_package = "aggregator";
+
+import "google/protobuf/empty.proto";
+
+service Aggregator {
+    rpc RunLanguageDetection (google.protobuf.Empty) returns (google.protobuf.Empty) {
+    }
+
+    rpc RunAggregation (google.protobuf.Empty) returns (google.protobuf.Empty) {
+    }
+
+    rpc SyncEntities (google.protobuf.Empty) returns (google.protobuf.Empty) {
+    }
+
+    rpc SyncSeeds (google.protobuf.Empty) returns (google.protobuf.Empty) {
+    }
+}
+
+message RunLanguageDetectionRequest {
+}
+
+message RunLanguageDetectionResponse {
+}
