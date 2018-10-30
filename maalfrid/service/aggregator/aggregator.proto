@@ -5,23 +5,37 @@ package maalfrid.service.aggregator;
 option go_package = "aggregator";
 
 import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
 
 service Aggregator {
+    // Detect language of extracted texts
     rpc RunLanguageDetection (google.protobuf.Empty) returns (google.protobuf.Empty) {
     }
 
-    rpc RunAggregation (google.protobuf.Empty) returns (google.protobuf.Empty) {
+    // Aggregate data from veidemann to maalfrid
+    rpc RunAggregation (RunAggregationRequest) returns (google.protobuf.Empty) {
     }
 
-    rpc SyncEntities (google.protobuf.Empty) returns (google.protobuf.Empty) {
-    }
-
-    rpc SyncSeeds (google.protobuf.Empty) returns (google.protobuf.Empty) {
+    // Synchronize entities from veidemann to maalfrid
+    rpc SyncEntities (SyncEntitiesRequest) returns (google.protobuf.Empty) {
     }
 }
 
-message RunLanguageDetectionRequest {
+message Label {
+    string key = 1;
+    string label = 2;
 }
 
-message RunLanguageDetectionResponse {
+message SyncEntitiesRequest {
+    // if set then only entities with a matching name will be synchronized
+    string name = 1;
+    // if set then only entities labeled with any of the labels will be synchronized
+    repeated Label labels = 2;
+}
+
+message RunAggregationRequest {
+    // The lower bound of the start time an execution this aggregation should process (inclusive)
+    google.protobuf.Timestamp start_time = 1;
+    // The upper bound of the start time an execution this aggregation should process (exlusive)
+    google.protobuf.Timestamp end_time = 2;
 }
