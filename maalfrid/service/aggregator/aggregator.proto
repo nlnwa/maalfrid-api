@@ -9,7 +9,7 @@ import "google/protobuf/timestamp.proto";
 
 service Aggregator {
     // Detect language of extracted texts
-    rpc RunLanguageDetection (google.protobuf.Empty) returns (google.protobuf.Empty) {
+    rpc RunLanguageDetection (RunLanguageDetectionRequest) returns (google.protobuf.Empty) {
     }
 
     // Aggregate data from veidemann to maalfrid
@@ -38,4 +38,9 @@ message RunAggregationRequest {
     google.protobuf.Timestamp start_time = 1;
     // The upper bound of the start time an execution this aggregation should process (exlusive)
     google.protobuf.Timestamp end_time = 2;
+}
+
+message RunLanguageDetectionRequest {
+    // If language detection should process extracted texts already processed
+    bool detect_all = 1;
 }
