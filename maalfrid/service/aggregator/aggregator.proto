@@ -19,6 +19,9 @@ service Aggregator {
     // Synchronize entities from veidemann to maalfrid
     rpc SyncEntities (SyncEntitiesRequest) returns (google.protobuf.Empty) {
     }
+
+    rpc FilterAggregate (FilterAggregateRequest) returns (google.protobuf.Empty){
+    }
 }
 
 message Label {
@@ -34,6 +37,13 @@ message SyncEntitiesRequest {
 }
 
 message RunAggregationRequest {
+    // The lower bound of the start time an execution this aggregation should process (inclusive)
+    google.protobuf.Timestamp start_time = 1;
+    // The upper bound of the start time an execution this aggregation should process (exlusive)
+    google.protobuf.Timestamp end_time = 2;
+}
+
+message FilterAggregateRequest {
     // The lower bound of the start time an execution this aggregation should process (inclusive)
     google.protobuf.Timestamp start_time = 1;
     // The upper bound of the start time an execution this aggregation should process (exlusive)
