@@ -44,10 +44,11 @@ message RunAggregationRequest {
 }
 
 message FilterAggregateRequest {
+    string seed_id = 1;
     // The lower bound of the start time an execution this aggregation should process (inclusive)
-    google.protobuf.Timestamp start_time = 1;
+    google.protobuf.Timestamp start_time = 2;
     // The upper bound of the start time an execution this aggregation should process (exlusive)
-    google.protobuf.Timestamp end_time = 2;
+    google.protobuf.Timestamp end_time = 3;
 }
 
 message RunLanguageDetectionRequest {
