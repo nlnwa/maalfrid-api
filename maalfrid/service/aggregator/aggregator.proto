@@ -5,7 +5,6 @@ package maalfrid.service.aggregator;
 option go_package = "aggregator";
 
 import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
 
 service Aggregator {
     // Detect language of extracted texts
@@ -37,18 +36,12 @@ message SyncEntitiesRequest {
 }
 
 message RunAggregationRequest {
-    // The lower bound of the start time an execution this aggregation should process (inclusive)
-    google.protobuf.Timestamp start_time = 1;
-    // The upper bound of the start time an execution this aggregation should process (exlusive)
-    google.protobuf.Timestamp end_time = 2;
+    string job_execution_id = 1;
 }
 
 message FilterAggregateRequest {
-    string seed_id = 1;
-    // The lower bound of the start time an execution this aggregation should process (inclusive)
-    google.protobuf.Timestamp start_time = 2;
-    // The upper bound of the start time an execution this aggregation should process (exlusive)
-    google.protobuf.Timestamp end_time = 3;
+    string job_execution_id = 1;
+    string seed_id = 2;
 }
 
 message RunLanguageDetectionRequest {
